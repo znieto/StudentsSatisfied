@@ -1,11 +1,9 @@
-﻿using Microsoft.VisualBasic;
-
-namespace Student.Satisfaction.Models
+﻿namespace Student.Satisfaction.Models
 {
-  internal class Team
+  public class Team
   {
     public string TeamName { get; set; }
-    public Dictionary<string, Interaction> CompanyScores { get; set; }
+    public Dictionary<string, Score> CompanyScores { get; set; } = [];
 
   }
 }

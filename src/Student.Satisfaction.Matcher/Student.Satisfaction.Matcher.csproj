@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Student.Satisfaction.Csv\Student.Satisfaction.Csv.csproj" />
+  </ItemGroup>
+
 </Project>
