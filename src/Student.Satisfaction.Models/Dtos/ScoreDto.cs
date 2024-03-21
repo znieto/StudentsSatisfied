@@ -2,8 +2,9 @@
 {
   public class ScoreDto
   {
-    public int? SingleValue { get; set; }
-    public Tuple<int?, int?>? PairValue { get; set; }
+    public bool PerfectMatch { get; set; }
+    public int? TeamScore { get; set; }
+    public int? CompanyScore { get; set; }
 
   }
 }

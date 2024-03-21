@@ -3,7 +3,7 @@
   public class TeamDto
   {
     public string TeamName { get; set; }
-    public Dictionary<string, ScoreDto> CompanyScores { get; set; } = [];
+    public Dictionary<string, int?> CompanyScores { get; set; } = [];
 
   }
 }

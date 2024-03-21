@@ -1,4 +1,5 @@
 ﻿using Student.Satisfaction.Csv;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Student.Satisfaction.Matcher
 {
@@ -8,9 +9,17 @@ namespace Student.Satisfaction.Matcher
     private readonly CsvService csvService = new CsvService();
     public StudentMatchService(string csvFilePath) => this.csvFilePath = csvFilePath;
 
-    public void ProcessCsv()
+    public void Process()
     {
-      csvService.ReadCsv(csvFilePath);
+      var companyTeamScores = csvService.ReadCsv(csvFilePath);
+
+      //var matches = PerformMatching(data.Teams, data.Companies);
+
+      //// Output matches
+      //foreach (var match in matches)
+      //{
+      //  Console.WriteLine($"Team {match.Key} is matched with Company {match.Value}");
+      //}
 
     }
   }
