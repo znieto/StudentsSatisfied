@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Student.Satisfaction.Models.Dtos;
 
 namespace Student.Satisfaction.Csv
 {
-  internal interface IFileService
+  public interface IFileService
   {
+    CompanyTeamScoresDto ReadCsv(string filePath);
   }
 }
