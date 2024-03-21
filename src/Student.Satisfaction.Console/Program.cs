@@ -1,6 +1,8 @@
 ﻿using Student.Satisfaction.Matcher;
 
-string csvFilePath = "C:\\temp\\studentdompany3.csv";
+string csvFilePath = Environment.GetCommandLineArgs()[1];
+Console.WriteLine($"File to process, {csvFilePath}!");
+
 var studentMatch = new StudentMatchService(csvFilePath);
 studentMatch.Process();
 

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Student.Satisfaction.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\\\temp\\\\studentdompany.csv\""
+    }
+  }
+}
