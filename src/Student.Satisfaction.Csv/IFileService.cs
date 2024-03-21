@@ -2,7 +2,7 @@
 
 namespace Student.Satisfaction.Csv
 {
-    public interface IFileService
+  public interface IFileService
   {
     CompanyTeamScoresDto ReadCsv(string filePath);
   }

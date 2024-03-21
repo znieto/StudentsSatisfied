@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Student.Satisfaction.Csv
 {
-    public class CsvService : IFileService
+  public class CsvService : IFileService
   {
     public CompanyTeamScoresDto ReadCsv(string filePath)
     {
