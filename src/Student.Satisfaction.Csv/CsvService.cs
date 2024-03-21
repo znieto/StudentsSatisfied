@@ -1,14 +1,14 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
-using Student.Satisfaction.Models;
+using Student.Satisfaction.Models.Dtos;
 using System.Globalization;
 using System.Text;
 
 namespace Student.Satisfaction.Csv
 {
-  public class CsvService : IFileService
+    public class CsvService : IFileService
   {
-    public CompanyTeamScores ReadCsv(string filePath)
+    public CompanyTeamScoresDto ReadCsv(string filePath)
     {
       using var reader = new StreamReader(filePath);
       using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -23,14 +23,14 @@ namespace Student.Satisfaction.Csv
 
       csv.Read();
       csv.ReadHeader();
-      var data = new CompanyTeamScores();
+      var data = new CompanyTeamScoresDto();
 
       data.Companies.AddRange(csv.HeaderRecord.Skip(1)); // Skip the first header cell ("Team/Company")
 
       // Reading each row
       while (csv.Read())
       {
-        var team = new Team { TeamName = csv.GetField(0) }; // The first field is the team name
+        var team = new TeamDto { TeamName = csv.GetField(0) }; // The first field is the team name
 
         for (int i = 1; i < csv.HeaderRecord.Length; i++)
         {
@@ -47,11 +47,11 @@ namespace Student.Satisfaction.Csv
 
     }
 
-    private static Score ParseInteraction(string field)
+    private static ScoreDto ParseInteraction(string field)
     {
       if (string.IsNullOrWhiteSpace(field))
       {
-        return new Score(); // Empty interaction
+        return new ScoreDto(); // Empty interaction
       }
       else if (field.Contains(","))
       {
@@ -59,12 +59,12 @@ namespace Student.Satisfaction.Csv
         var parts = field.Split(',');
         int.TryParse(parts[0], out int value1);
         int.TryParse(parts[1], out int value2);
-        return new Score { PairValue = new Tuple<int?, int?>(value1, value2) };
+        return new ScoreDto { PairValue = new Tuple<int?, int?>(value1, value2) };
       }
       else
       {
         // It's a single value
-        return new Score { SingleValue = int.Parse(field) };
+        return new ScoreDto { SingleValue = int.Parse(field) };
       }
     }
   }

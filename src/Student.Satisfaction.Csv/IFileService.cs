@@ -1,9 +1,9 @@
-﻿using Student.Satisfaction.Models;
+﻿using Student.Satisfaction.Models.Dtos;
 
 namespace Student.Satisfaction.Csv
 {
-  public interface IFileService
+    public interface IFileService
   {
-    CompanyTeamScores ReadCsv(string filePath);
+    CompanyTeamScoresDto ReadCsv(string filePath);
   }
 }
