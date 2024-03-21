@@ -96,7 +96,7 @@ namespace Student.Satisfaction.Csv
       {
         // It's a single value
         int.TryParse(field, out int intValue);
-        return new ScoreDto { PerfectMatch = intValue == 1, CompanyScore = intValue, TeamScore = intValue };
+        return new ScoreDto { CompanyScore = intValue, TeamScore = intValue };
       }
     }
   }

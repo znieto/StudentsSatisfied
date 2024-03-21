@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Student.Satisfaction.Csv", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Student.Satisfaction.Matcher", "src\Student.Satisfaction.Matcher\Student.Satisfaction.Matcher.csproj", "{CAB2FD80-7296-42FF-8030-03A3143E0F14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student.Satisfaction.Models", "src\Student.Satisfaction.Models\Student.Satisfaction.Models.csproj", "{666522E2-D314-463B-B274-574441051BD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Student.Satisfaction.Models", "src\Student.Satisfaction.Models\Student.Satisfaction.Models.csproj", "{666522E2-D314-463B-B274-574441051BD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{829923A4-683A-48AD-8B4B-E9ED1303EBE1}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
