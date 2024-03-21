@@ -10,6 +10,11 @@ namespace Student.Satisfaction.Csv
   {
     public CompanyTeamScoresDto ReadCsv(string filePath)
     {
+      if (!File.Exists(filePath))
+      {
+        Console.WriteLine($"The file {filePath} does not exist.");
+        return null;
+      }
       using var reader = new StreamReader(filePath);
       using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
       {

@@ -1,5 +1,5 @@
 ﻿using Student.Satisfaction.Csv;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Student.Satisfaction.Models.Model;
 
 namespace Student.Satisfaction.Matcher
 {
@@ -7,20 +7,32 @@ namespace Student.Satisfaction.Matcher
   {
     private readonly string csvFilePath;
     private readonly CsvService csvService = new CsvService();
-    public StudentMatchService(string csvFilePath) => this.csvFilePath = csvFilePath;
+    readonly List<Team> teams = [];
+    readonly List<Company> companies = [];
+    private readonly PreferenceService preferenceService;
+    private readonly MatchingService matchingService;
+    Models.Dtos.CompanyTeamScoresDto companyTeamScores = new Models.Dtos.CompanyTeamScoresDto();
+
+    public StudentMatchService(string csvFilePath)
+    {
+      this.csvFilePath = csvFilePath;
+      this.preferenceService = new PreferenceService(teams, companies);
+      this.matchingService = new MatchingService(teams, companies);
+    }
 
     public void Process()
     {
-      var companyTeamScores = csvService.ReadCsv(csvFilePath);
+      // Load data
+      companyTeamScores = csvService.ReadCsv(csvFilePath);
+      // Generate preferences
+      preferenceService.GeneratePreferences(companyTeamScores);
 
-      //var matches = PerformMatching(data.Teams, data.Companies);
+      // Perform matching
+      var matches = matchingService.PerformMatching();
 
-      //// Output matches
-      //foreach (var match in matches)
-      //{
-      //  Console.WriteLine($"Team {match.Key} is matched with Company {match.Value}");
-      //}
-
+      var outputService = new OutputService();
+      // Display output
+      outputService.DisplayMatches(matches);
     }
   }
 }
