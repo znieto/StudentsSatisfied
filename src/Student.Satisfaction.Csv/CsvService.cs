@@ -34,18 +34,9 @@ namespace Student.Satisfaction.Csv
 
         for (int i = 1; i < csv.HeaderRecord.Length; i++)
         {
-          string companyName = csv.HeaderRecord[i]??string.Empty;
-          string field = csv.GetField(i);
-          var score = ParseScore(field);
-          team.CompanyScores.Add(companyName, score.CompanyScore);
-
-          CompanyDto companyDto = new CompanyDto()
-          {
-            CompanyName = companyName
-          };
-          companyDto.TeamScores.Add(teamName, score.TeamScore);
-          data.Companies.Add(companyDto);
-
+          string companyName = csv.HeaderRecord[i] ?? string.Empty;
+          var score = CreateTeam(csv, team, i, companyName);
+          CreateCompany(data, teamName, companyName, score);
         }
 
         data.Teams.Add(team);
@@ -53,6 +44,33 @@ namespace Student.Satisfaction.Csv
 
       return data;
 
+    }
+
+    private static ScoreDto CreateTeam(CsvReader csv, TeamDto team, int i, string companyName)
+    {
+      string field = csv.GetField(i);
+      var score = ParseScore(field);
+      team.CompanyScores.Add(companyName, score.CompanyScore);
+      return score;
+    }
+
+    private static void CreateCompany(CompanyTeamScoresDto data, string teamName, string companyName, ScoreDto score)
+    {
+      var company = data.Companies.FirstOrDefault(c => c.CompanyName == companyName);
+
+      if (company != null)
+      {
+        company.TeamScores.Add(teamName, score.TeamScore);
+      }
+      else
+      {
+        var companyDto = new CompanyDto()
+        {
+          CompanyName = companyName
+        };
+        companyDto.TeamScores.Add(teamName, score.TeamScore);
+        data.Companies.Add(companyDto);
+      }
     }
 
     private static ScoreDto ParseScore(string field)
